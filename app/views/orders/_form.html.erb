@@ -1,0 +1,93 @@
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<p>Order Details</p>
+<hr>
+  <div class="field">
+    <%= f.label :order_no %><br>
+    <%= f.number_field :order_no %>
+  </div>
+  <div class="field">
+    <%= f.label :tracking_no %><br>
+    <%= f.number_field :tracking_no %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_date %><br>
+    <%= f.date_select :delivery_date %>
+  </div>
+  <div class="field">
+    <%= f.label :order_value %><br>
+    <%= f.number_field :order_value %>
+  </div>
+  <div class="field">
+    <%= f.label :order_currency %><br>
+    <%= f.text_field :order_currency %>
+  </div>
+  <div class="field">
+    <%= f.label :instruction %><br>
+    <%= f.text_area :instruction %>
+  </div>
+  <div class="field">
+    <%= f.check_box :is_express_delivery %>
+    <%= f.label :is_express_delivery %>
+    <br>
+    
+    <%= f.check_box :is_customer_pickup %>
+    <%= f.label :is_customer_pickup %>
+  </div>
+<hr>
+    <!--form for customer details -->
+
+<p>Customer Details</p>
+<hr>
+    <%= f.fields_for :customer do |cust| %>
+      <div class="customer_field">
+        <div class="field">
+          <%= cust.label "First Name:"%>
+          <%= cust.text_field :fname %>
+
+          <%= cust.label "Last Name"%>
+          <%= cust.text_field :lname %>
+        </div>
+      </div>
+
+      <div class="customer_field">
+        <div class="field">
+          <%= cust.label "Email:"%>
+          <%= cust.text_field :email %>
+
+          <%= cust.label "Contact Number"%>
+          <%= cust.text_field :contact_no %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Form for address details -->
+
+    <%= f.fields_for :address do |addr| %>
+    <div class="address_field">
+      <div class="field">
+        <%= addr.label "Address:" %>
+        <%= addr.try(:permanant_addr) %>
+      </div>
+    </div>
+    <% end %> 
+<hr>
+
+
+<!--Select Product -->
+
+
+  <div class="actions" align="center">
+    <%= f.submit "Place Order", class: "btn btn-success"  %>
+  </div>
+<% end %>

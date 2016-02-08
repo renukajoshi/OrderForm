@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  permanant_addr: MyText
+  office_addr: MyText
+  temparary_addr: MyText
+  city: MyString
+  state: MyString
+  country: MyString
+
+two:
+  permanant_addr: MyText
+  office_addr: MyText
+  temparary_addr: MyText
+  city: MyString
+  state: MyString
+  country: MyString

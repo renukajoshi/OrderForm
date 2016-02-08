@@ -1,0 +1,26 @@
+body {
+	padding-top: 50px;
+	background-color:white;
+}
+
+
+table {
+	text-align: center;
+}
+
+form{
+
+	width: auto;
+    height: auto;
+    padding: 50px;
+   
+    box-shadow: 10px 10px 10px  10px grey;
+
+}
+
+header{
+	background-color: black;
+	color:white;
+	font-style: verdana;
+}
+
