@@ -39,5 +39,6 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'bootstrap-sass'
-gem 'country-select'
-gem 'devise'
+gem 'country_select'
+#gem 'bootstrap-datepicker-rails'
+#gem 'devise'

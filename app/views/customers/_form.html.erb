@@ -1,18 +1,7 @@
 <div class="form">
 <div class="col-sm-12">
 <%= form_for(@customer) do |f| %>
-  <% if @customer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
-
-      <ul>
-      <% @customer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  
 <p>customer details</p>
 <hr>
 <div class="row">
@@ -47,7 +36,7 @@
   <div class="field">
     <div class="col-sm-12">
     <%= f.label "BirthDate" %>
-    <%= f.text_field :birthdate, :id => "example1" , class: "datepicker" , required: true  %>
+    <%= f.text_field :birthdate , :id => "example1" , class: "datepicker" , required: true %>
     </div>
   </div>
 </div>
@@ -55,7 +44,9 @@
 <br>
 <!-- Address Form -->
   <%= f.fields_for :addresses do |address| %>
-  <div class="row">
+    <%#= render 'addressform' , locals: @address %>
+
+    <div class="row">
     <div class="addresses_field">
       <div class="field form-group">
         <div class="col-md-12">
@@ -89,7 +80,7 @@
 
   <div class="row">
     <div class="addresses_field">
-      <div class="field">
+      <div class="field form-group">
          <div class="col-md-12">
           <%= address.label "State:" %>
           <%= address.text_field :state %>
@@ -102,10 +93,12 @@
 
   <div class="row">
     <div class="addresses_field">
-      <div class="field">
+      <div class="field form-group">
          <div class="col-md-12">
           <%= address.label "Country" %>
-          <%#= address.country_select :country , class: "dropdown" , required: true %>
+          <%#= address.country_select(:country, {selected: address.try(:country)}, {class: "form-control"}) %>
+          <%= address.country_select :country , class: "dropdown" , required: true %>
+          <%#= address.text_field :country %>
         </div>
       </div>
     </div>
@@ -115,7 +108,7 @@
 
   <div class="row">  
     <div class="addresses_field">
-      <div class="field">
+      <div class="field form-group">
          <div class="col-md-12">
           <%= address.label "Pin Code:" %>
           <%= address.text_field :pin_code %>
@@ -127,10 +120,9 @@
   <% end %>
 
 <br>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>
 </div>
 </div>

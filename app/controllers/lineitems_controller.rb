@@ -10,6 +10,7 @@ class LineitemsController < ApplicationController
   # GET /lineitems/1
   # GET /lineitems/1.json
   def show
+    @product = current_order.products
   end
 
   # GET /lineitems/new
@@ -24,8 +25,11 @@ class LineitemsController < ApplicationController
   # POST /lineitems
   # POST /lineitems.json
   def create
-    @lineitem = Lineitem.new(lineitem_params)
-
+    #@lineitem = Lineitem.new(lineitem_params)
+    @order = current_order
+    @lineitem = @order.lineitems.new(lineitem_params)
+    @order.save
+    session[:order_id] = @order.id
     respond_to do |format|
       if @lineitem.save
         format.html { redirect_to @lineitem, notice: 'Lineitem was successfully created.' }
@@ -40,6 +44,10 @@ class LineitemsController < ApplicationController
   # PATCH/PUT /lineitems/1
   # PATCH/PUT /lineitems/1.json
   def update
+    @order = current_order
+    @lineitem = @order.lineitems.find(params[:id])
+    @lineitem.update_attributes(lineitem_params)
+    @lineitems = @order.lineitems
     respond_to do |format|
       if @lineitem.update(lineitem_params)
         format.html { redirect_to @lineitem, notice: 'Lineitem was successfully updated.' }
@@ -54,7 +62,11 @@ class LineitemsController < ApplicationController
   # DELETE /lineitems/1
   # DELETE /lineitems/1.json
   def destroy
+    @order = current_order
+    @lineitem = @order.lineitems.find(params[:id])
     @lineitem.destroy
+    @lineitems = @order.lineitems
+  
     respond_to do |format|
       format.html { redirect_to lineitems_url, notice: 'Lineitem was successfully destroyed.' }
       format.json { head :no_content }

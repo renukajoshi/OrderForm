@@ -8,13 +8,17 @@ table {
 	text-align: center;
 }
 
+thead{
+	text-align: center;
+}	
+
 form{
 
 	width: auto;
     height: auto;
     padding: 50px;
    
-    box-shadow: 10px 10px 10px  10px grey;
+    border: 10px 10px 10px  10px black;
 
 }
 

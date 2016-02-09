@@ -14,7 +14,7 @@
 <hr>
   <div class="field">
     <%= f.label :order_no %><br>
-    <%= f.number_field :order_no %>
+    <%= f.text_field :order_no %>
   </div>
   <div class="field">
     <%= f.label :tracking_no %><br>
@@ -22,20 +22,14 @@
   </div>
   <div class="field">
     <%= f.label :delivery_date %><br>
-    <%= f.date_select :delivery_date %>
+    <%= f.text_field :delivery_date, :id => "example1", class: "datepicker", required: true %>
   </div>
   <div class="field">
     <%= f.label :order_value %><br>
-    <%= f.number_field :order_value %>
+    <%= f.text_field :order_value %>
   </div>
-  <div class="field">
-    <%= f.label :order_currency %><br>
-    <%= f.text_field :order_currency %>
-  </div>
-  <div class="field">
-    <%= f.label :instruction %><br>
-    <%= f.text_area :instruction %>
-  </div>
+
+
   <div class="field">
     <%= f.check_box :is_express_delivery %>
     <%= f.label :is_express_delivery %>
@@ -44,48 +38,163 @@
     <%= f.check_box :is_customer_pickup %>
     <%= f.label :is_customer_pickup %>
   </div>
+
+    
 <hr>
     <!--form for customer details -->
-
-<p>Customer Details</p>
+<%= f.fields_for :customer do |c| %>
+<p>customer details</p>
 <hr>
-    <%= f.fields_for :customer do |cust| %>
-      <div class="customer_field">
-        <div class="field">
-          <%= cust.label "First Name:"%>
-          <%= cust.text_field :fname %>
+<div class="row">
+  <div class="field form-group">
+    <div class="col-md-12">
+    <%= c.label "First Name:" %>
+    <%= c.text_field :fname %>
 
-          <%= cust.label "Last Name"%>
-          <%= cust.text_field :lname %>
-        </div>
+    <%= c.label "Last Name:" %>
+    <%= c.text_field :lname %>
+  </div>
+</div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="field form-group">
+    <div class="col-sm-12">
+    <%= c.label "Email Id:" %>
+    <%= c.text_field :email %>
+  
+    <%= c.label "Contact Number:" %>
+    <%= c.text_field :contact_no %>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="field">
+    <div class="col-sm-12">
+    <%= c.label "BirthDate" %>
+    <%= c.text_field :birthdate , :id => "example1" , class: "datepicker" , required: true %>
+    </div>
+  </div>
+</div>
+<% end %>
+<br>
+<!-- Address Form -->
+  <%= f.fields_for :address do |address| %>
+    <%#= render 'addressform' , locals: @address %>
+
+    <div class="row">
+    <div class="addresses_field">
+      <div class="field form-group">
+        <div class="col-md-12">
+        <%= address.label "Permanant Address:" %>
+        <%= address.text_field :permanant_addr %>
+      
+        <%= address.label "Office Address:" %>
+        <%= address.text_field :office_addr %>
       </div>
-
-      <div class="customer_field">
-        <div class="field">
-          <%= cust.label "Email:"%>
-          <%= cust.text_field :email %>
-
-          <%= cust.label "Contact Number"%>
-          <%= cust.text_field :contact_no %>
-        </div>
-      </div>
-    <% end %>
-
-    <!-- Form for address details -->
-
-    <%= f.fields_for :address do |addr| %>
-    <div class="address_field">
-      <div class="field">
-        <%= addr.label "Address:" %>
-        <%= addr.try(:permanant_addr) %>
       </div>
     </div>
-    <% end %> 
+  </div>
+
+<br>
+
+  <div class="row">
+    <div class="addresses_field">
+      <div class="field form-group">
+         <div class="col-md-12">
+          <%= address.label "Temparary Address:" %>
+          <%= address.text_field :temparary_addr %>
+
+          <%= address.label "City:" %>
+          <%= address.text_field :city %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<br>
+
+  <div class="row">
+    <div class="addresses_field">
+      <div class="field form-group">
+         <div class="col-md-12">
+          <%= address.label "State:" %>
+          <%= address.text_field :state %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<br>
+
+  <div class="row">
+    <div class="addresses_field">
+      <div class="field form-group">
+         <div class="col-md-12">
+          <%= address.label "Country" %>
+          <%#= address.country_select(:country, {selected: address.try(:country)}, {class: "form-control"}) %>
+          <%= address.country_select :country , class: "dropdown" , required: true %>
+          <%#= address.text_field :country %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">  
+    <div class="addresses_field">
+      <div class="field form-group">
+         <div class="col-md-12">
+          <%= address.label "Pin Code:" %>
+          <%= address.text_field :pin_code %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% end %>
+  <hr>
+  <!-- Select Product --> 
+  <h5>Select Products</h5>
+  <%= f.fields_for :lineitems do |p| %>
+    <div class="lineitems_field">
+      <div class="field">
+        <%= p.label "Product Name"%>
+        <%= p.text_field :name %>
+      </div>
+    </div>
+
+    <div class="lineitems_field">
+      <div class="field">
+        <%= p.label :sku %>
+        <%= p.text_field :sku %>
+      </div>
+    </div>
+
+      <div class="lineitems_field">
+        <div class="field">
+          <%= p. label "Quantity"%>
+          <%= p.text_field :quantity %>
+        </div>
+      </div>
+
+      <div class="lineitems_field">
+        <div class="field">
+          <%= p.label "price"%>
+          <%= p.text_field :price %>
+        </div>
+      </div>
+  <% end %>
+<br>
+
+
 <hr>
-
-
-<!--Select Product -->
-
 
   <div class="actions" align="center">
     <%= f.submit "Place Order", class: "btn btn-success"  %>

@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    #@products = @order.products
     #respond_with(@orders)
   end
 
@@ -16,6 +17,8 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.build_customer
     @order.build_address
+    @order.lineitems.build
+    
     #respond_with(@order)
   end
 
@@ -24,7 +27,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-   respond_to do |format|
+     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
@@ -63,6 +66,8 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :order_currency, :instruction, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], addresses_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country, :pin_code])
+      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :order_currency, :instruction, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], addresses_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country, :pin_code], lineitems_attributes:[:id, :name, :sku, :description, :quantity, :price])
     end
+
+    
 end
