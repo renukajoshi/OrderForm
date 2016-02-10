@@ -96,9 +96,7 @@
       <div class="field form-group">
          <div class="col-md-12">
           <%= address.label "Country" %>
-          <%#= address.country_select(:country, {selected: address.try(:country)}, {class: "form-control"}) %>
           <%= address.country_select :country , class: "dropdown" , required: true %>
-          <%#= address.text_field :country %>
         </div>
       </div>
     </div>

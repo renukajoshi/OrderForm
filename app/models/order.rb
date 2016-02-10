@@ -10,10 +10,9 @@ class Order < ActiveRecord::Base
 	accepts_nested_attributes_for :lineitems
 
 
-	def order_value
-   		lineitems.collect { |oi| oi.valid? ? (oi.quantity * oi.price) : 0 }.sum
-    end
-
+	 def order_value
+  		lineitems.collect { |oi| oi.valid? ? (oi.quantity * oi.price) : 0 }
+     end
 
 
   	# def self.order_delivery_date

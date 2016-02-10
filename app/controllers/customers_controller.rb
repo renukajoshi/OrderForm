@@ -17,6 +17,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new
     #form for addresses
     @customer.addresses.build
+    @addresses = Address.all
   end
 
   # GET /customers/1/edit

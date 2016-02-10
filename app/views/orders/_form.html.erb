@@ -39,7 +39,7 @@
     <%= f.label :is_customer_pickup %>
   </div>
 
-    
+    <%= render 'customer' %>
 <hr>
     <!--form for customer details -->
 <%= f.fields_for :customer do |c| %>
@@ -86,7 +86,7 @@
 <!-- Address Form -->
   <%= f.fields_for :address do |address| %>
     <%#= render 'addressform' , locals: @address %>
-
+    <%= render 'address'%>
     <div class="row">
     <div class="addresses_field">
       <div class="field form-group">

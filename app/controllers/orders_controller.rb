@@ -18,8 +18,15 @@ class OrdersController < ApplicationController
     @order.build_customer
     @order.build_address
     @order.lineitems.build
-    
-    #respond_with(@order)
+
+    @customers = Customer.all
+    #raise @customers.inspect
+    for @customer.each do 
+      if cust.email.exist?
+        @addresses = Address.all
+      else
+      end
+    end
   end
 
   def edit
@@ -27,6 +34,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+  
      respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -41,8 +49,8 @@ class OrdersController < ApplicationController
   def update
     @order.update(order_params)
      respond_to do |format|
-      if @order.update(address_params)
-        format.html { redirect_to @address, notice: 'Order was successfully updated.' }
+      if @order.update(order_params)
+        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -66,7 +74,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :order_currency, :instruction, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], addresses_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country, :pin_code], lineitems_attributes:[:id, :name, :sku, :description, :quantity, :price])
+      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :order_currency, :instruction, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], lineitems_attributes:[:id, :name, :sku, :quantity, :price])
     end
 
     
