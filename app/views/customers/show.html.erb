@@ -24,6 +24,45 @@
   <strong>Birthdate:</strong>
   <%= @customer.birthdate %>
 </p>
-
+<hr>
+<h5>Customer Address Details</h5>
+<% if @customer.addresses.any? %>
+<%#= raise params.inspect %>
+  <ul>
+    <% @customer.addresses.each do |adr| %>
+    <%#= raise params.inspect%>
+       <p>
+        <strong>Permanant Adress:</strong> 
+       <%= adr.permanant_addr %>
+      </p>
+       <br>  
+       <p>
+        <strong>Office Address:</strong>
+       <%= adr.office_addr %> 
+        </p>
+       <br>
+       <p>
+        <strong>Temparary Address:</strong>
+       <%= adr.temparary_addr %>
+       </p>
+       <br>
+       <p>
+        <strong>City:</strong>
+      <%= adr.city %>
+      </p>
+      <br>
+       <p>
+        <strong>State:</strong>             
+       <%= adr.state %>
+       </p>
+       <br>
+       <p><strong>Country:</strong>           
+       <%= adr.country %>
+        </p>
+    <% end %>
+  </ul>
+<% else %>
+  <p>none available</p>
+<% end %>
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>

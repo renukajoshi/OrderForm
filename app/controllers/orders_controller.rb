@@ -2,9 +2,12 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
-
+  
   def index
     @orders = Order.all
+
+    @products = Product.all
+    
     #@products = @order.products
     #respond_with(@orders)
   end
@@ -15,18 +18,15 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    #to create customer and address using nested form
     @order.build_customer
     @order.build_address
     @order.lineitems.build
-
-    @customers = Customer.all
-    #raise @customers.inspect
-    for @customer.each do 
-      if cust.email.exist?
-        @addresses = Address.all
-      else
-      end
-    end
+    
+  
+  # if @order.customer.email 
+   #    render addresses_path(@address) , method: :GET
+   #  end
   end
 
   def edit
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-  
+     #raise params.inspect
      respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -74,7 +74,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :order_currency, :instruction, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], lineitems_attributes:[:id, :name, :sku, :quantity, :price])
+      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country], lineitems_attributes:[:id, :name, :sku, :quantity, :price])
     end
 
     

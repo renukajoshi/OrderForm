@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
 	has_many :products
 
 	belongs_to :customer
-	belongs_to :address
+	belongs_to :address , :inverse_of => :orders
 
 	accepts_nested_attributes_for :customer
 	accepts_nested_attributes_for :address
@@ -12,7 +12,13 @@ class Order < ActiveRecord::Base
 
 	 def order_value
   		lineitems.collect { |oi| oi.valid? ? (oi.quantity * oi.price) : 0 }
-     end
+    end
+
+   #  def check_email_exists
+   #  	if Customer.exists?(:email => self.email)
+   #    		render :show , addresses_path(@address)
+   #  	end
+  	# end 
 
 
   	# def self.order_delivery_date

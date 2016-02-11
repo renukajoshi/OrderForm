@@ -16,91 +16,90 @@
 //= require bootstrap-datepicker
 //= require_tree .
 
-var permanantaddress = new Array();
-var officeaddress = new Array();
-var tempararyaddress = new Array();
-var email_id = new Array();
+// var firstname = new Array();
+// var lastname = new Array();
+// var contactno = new Array();
+// var emailid = new Array();
 
-permanantaddress[0] = "";
-officeaddress[0] = "";
-tempararyaddress[0] = "";
-email_id[0]=""
+// firstname[0] = "";
+// lastname[0] = "";
+// contactno[0] = "";
+// emailid[0]="";
 
-permanantaddress[1] = 1;
-officeaddress[1] = "Joshi";
-tempararyaddress[1] = "942038578";
-email_id[0]="renurenukaj1@gmail.com"
+// firstname[1] = 1;
+// lastname[1] = "Joshi";
+// contactno[1] = "942038578";
+// emailid[1]="renurenukaj1@gmail.com";
 
-
-permanantaddress[2] = 2;
-officeaddress[2] = "Joshi";
-tempararyaddress[2] = "36527";
-email_id[0]="dhanashri.joshi@gmail.com"
-
-
-        function Choice() {
-            //x = document.getElementById("officeaddressrs");
-            y = document.getElementById("selectCustomers");
-
-              //x.value = y.options[y.selectedIndex].text;
-              document.getElementById("permanantaddress").value = permanantaddress[y.selectedIndex];
-              document.getElementById("officeaddress").value = officeaddress[y.selectedIndex];
-              document.getElementById("tempararyaddress").value = tempararyaddress[y.selectedIndex];
-              document.getElementById("email_id").value=email_id[y.selectedIndex];
-         }
+// firstname[2] = 2;
+// lastname[2] = "Joshi";
+// contactno[2] = "36527";
+// emailid[2]="dhanashri.joshi@gmail.com";
 
 
-// var customer = new Array();
+//         function Choice() {
+//             //x = document.getElementById("officeaddressrs");
+//             y = document.getElementById("selectCustomers");
 
-// 	foreach($customer as $ value){
-// 		echo '<option>'.fname.'</option>';
-// 		echo '<option>'.lname.'</option>';
-// 		echo '<option>'.email.'</option>';
-// 		echo '<option>'.contact_no.'</option>';
-// 		echo '<option>'.birthdate.'</option>';
-// 	}
-// function Select() {
-// 	x = document.getElementById("selectCustomers");
-
-// 		document.getElementById("fname").value = customer[x.selectedIndex];
-// 		document.getElementById("lname").value = customer[x.selectedIndex];
-// 		document.getElementById("email").value = customer[x.selectedIndex];
-// 		document.getElementById("contact_no").value = customer[x.selectedIndex];
-// 		document.getElementById("birthdate").value = customer[x.selectedIndex];
-// }
+//               //x.value = y.options[y.selectedIndex].text;
+//               document.getElementById("firstname").value =firstname[y.selectedIndex];
+//               document.getElementById("lastname").value = lastname[y.selectedIndex];
+//               document.getElementById("contactno").value = contactno[y.selectedIndex];
+//               document.getElementById("emailid").value=emailid[y.selectedIndex];
+//          }
 
 
-var permanantaddress = new Array();
-var officeaddress = new Array();
-var tempararyaddress = new Array();
+var customer = new Array();
+
+	foreach($customer as $ value){
+		echo '<option>'.$fname.'</option>';
+		echo '<option>'.$lname.'</option>';
+		echo '<option>'.$email.'</option>';
+		echo '<option>'.$contact_no.'</option>';
+		echo '<option>'.$birthdate.'</option>';
+	}
+function Select() {
+	x = document.getElementById("selectCustomers");
+
+		document.getElementById("fname").value = customer[x.selectedIndex];
+		document.getElementById("lname").value = customer[x.selectedIndex];
+		document.getElementById("email").value = customer[x.selectedIndex];
+		document.getElementById("contact_no").value = customer[x.selectedIndex];
+		document.getElementById("birthdate").value = customer[x.selectedIndex];
+}
 
 
-permanantaddress[0] = "";
-officeaddress[0] = "";
-tempararyaddress[0] = "";
-
-permanantaddress[1] = "mahabl";
-officeaddress[1] = "Baner";
-tempararyaddress[1] = "Pune";
+// var permanantaddress = new Array();
+// var officeaddress = new Array();
+// var tempararyaddress = new Array();
 
 
-permanantaddress[2] = "manraj park";
-officeaddress[2] = "Baner";
-tempararyaddress[2] = "Pune";
+// permanantaddress[0] = "";
+// officeaddress[0] = "";
+// tempararyaddress[0] = "";
 
-permanantaddress[3] = "ramanand";
-officeaddress[3] = "Baner";
-tempararyaddress[3] = "Pune";
+// permanantaddress[1] = "mahabl";
+// officeaddress[1] = "Baner";
+// tempararyaddress[1] = "Pune";
 
 
-        function Select() {
-            //x = document.getElementById("officeaddressrs");
-            y = document.getElementById("selectAddresses");
+// permanantaddress[2] = "manraj park";
+// officeaddress[2] = "Baner";
+// tempararyaddress[2] = "Pune";
 
-              //x.value = y.options[y.selectedIndex].text;
-              document.getElementById("permanantaddress").value = permanantaddress[y.selectedIndex];
-              document.getElementById("officeaddress").value = officeaddress[y.selectedIndex];
-              document.getElementById("tempararyaddress").value = tempararyaddress[y.selectedIndex];
+// permanantaddress[3] = "ramanand";
+// officeaddress[3] = "Baner";
+// tempararyaddress[3] = "Pune";
+
+
+//         function Select() {
+//             //x = document.getElementById("officeaddressrs");
+//             y = document.getElementById("selectAddresses");
+
+//               //x.value = y.options[y.selectedIndex].text;
+//               document.getElementById("permanantaddress").value = permanantaddress[y.selectedIndex];
+//               document.getElementById("officeaddress").value = officeaddress[y.selectedIndex];
+//               document.getElementById("tempararyaddress").value = tempararyaddress[y.selectedIndex];
              
-         }
+//          }
 

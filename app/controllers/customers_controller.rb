@@ -17,7 +17,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new
     #form for addresses
     @customer.addresses.build
-    @addresses = Address.all
+    #@addresses = Address.all
   end
 
   # GET /customers/1/edit
@@ -29,7 +29,6 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }

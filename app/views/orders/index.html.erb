@@ -22,10 +22,10 @@
         <td><%= order.order_value %></td>
         <td><%= order.is_express_delivery %></td>
         <td><%= order.is_customer_pickup %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Cart', lineitems_path(@lineitem) %></td>
+        <td><%= link_to 'Show', order , class: "btn btn-link" %></td>
+        <td><%#= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%#= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Cart', lineitems_path(@lineitem) , class: "btn btn-link" %></td>
       </tr>
     <% end %>
   </tbody>
