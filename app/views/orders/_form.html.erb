@@ -10,50 +10,81 @@
       </ul>
     </div>
   <% end %>
-<p>Order Details</p>
-<hr>
-  <div class="field">
-    <%= f.label :order_no %><br>
-    <%= f.text_field :order_no %>
-  </div>
-  <div class="field">
-    <%= f.label :tracking_no %><br>
-    <%= f.number_field :tracking_no %>
-  </div>
-  <div class="field">
-    <%= f.label :delivery_date %><br>
-    <%= f.date_select :delivery_date %>
-  </div>
-  <div class="field">
-    <%= f.label :order_value %><br>
-    <%= f.text_field :order_value %>
+  
+  <p>Order Details</p>
+  <hr>
+  <div class="row">
+    <div class="field">
+      <div class="col-md-4">
+        <%= f.label :order_no %>
+        <%= f.text_field :order_no %>
+      </div>
+
+      <div class="col-md-4">
+        <%= f.label :tracking_no %>
+        <%= f.number_field :tracking_no %>
+      </div>
+    </div>
   </div>
 
 
-  <div class="field">
-    <%= f.check_box :is_express_delivery %>
-    <%= f.label :is_express_delivery %>
-    <br>
-    
-    <%= f.check_box :is_customer_pickup %>
-    <%= f.label :is_customer_pickup %>
+  <div class="row">
+    <div class="field">
+      <div class="col-md-12">
+        
+      </div>
+    </div>
   </div>
-<hr>
-<%= @collections = f.collection_select :customer_id , Customer.all, :id, :email, include_blank: true %>
-    <% if @order.customer.email %>
-      <%= @order.address.permanant_addr %>
-    <% end %>
- <hr>
+
+  <div class="row">
+    <div class="field">
+      <div class="col-md-4">
+        <%= f.label :delivery_date %>
+        <%= f.date_select :delivery_date %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :order_value %>
+        <%= f.text_field :order_value %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <div class="col-md-12">
+              </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <div class="col-md-4">
+        <%= f.check_box :is_express_delivery %>
+        <%= f.label :is_express_delivery %>
+      </div>
+      <div class="col-md-4">
+        <%= f.check_box :is_customer_pickup %>
+        <%= f.label :is_customer_pickup %>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <!--=========================-->
   <!--form for customer details -->
+<%#= render 'customers/show' %>
+<%= f.collection_select :customer_id , @customers , :id , :email , prompt: 'Please select customer email' %>
+<%#= render 'customer' %>
   <%= f.fields_for :customer do |c| %>
     <p>customer details</p>
     <hr>
     <div class="row">
-      <div class="field form-group">
-        <div class="col-md-12">
+      <div class="field">
+        <div class="col-md-4">
           <%= c.label "First Name:" %>
           <%= c.text_field :fname %>
-
+        </div>
+        <div class="col-md-4">
           <%= c.label "Last Name:" %>
           <%= c.text_field :lname %>
         </div>
@@ -63,11 +94,12 @@
       <br>
 
     <div class="row">
-      <div class="field form-group">
-        <div class="col-sm-12">
+      <div class="field">
+        <div class="col-md-4">
           <%= c.label "Email Id:" %>
           <%= c.text_field :email %>
-  
+        </div>
+        <div class="col-md-4">
           <%= c.label "Contact Number:" %>
           <%= c.text_field :contact_no %>
         </div>
@@ -78,7 +110,7 @@
 
     <div class="row">
       <div class="field">
-        <div class="col-sm-12">
+        <div class="col-md-4">
           <%= c.label "BirthDate" %>
           <%= c.date_select :birthdate %>
         </div>
@@ -86,7 +118,7 @@
     </div>
   <% end %>
   <br>
-<!-- Address Form -->
+  <!-- Address Form -->
   <%= f.fields_for :address do |address| %>
     <%#= render 'address'%>
     <div class="row">
@@ -119,7 +151,7 @@
     </div>
   </div>
 
-<br>
+    <br>
 
   <div class="row">
     <div class="addresses_field">
@@ -132,7 +164,7 @@
     </div>
   </div>
 
-<br>
+    <br>
 
   <div class="row">
     <div class="addresses_field">
@@ -159,13 +191,17 @@
   </div>
 <%end %>
 
-
   <hr>
   <!-- Select Product --> 
-
   
   <h5>Add Products</h5>
   <%= f.fields_for :lineitems do |p| %>
+    <div class="lineitems_field">
+      <div class="field">
+        <%#= collection_select(:products, :id , Product.all , :id, :name , {:required => true} , {:multiple => true}) %> 
+      </div>
+    </div>
+
     <div class="lineitems_field">
       <div class="field">
         <%= p.label "Product Name"%>
@@ -194,10 +230,10 @@
         </div>
       </div>
   <% end %>
-<br>
+    <br>
 
 
-<hr>
+    <hr>
 
   <div class="actions" align="center">
     <%= f.submit "Place Order", class: "btn btn-success"  %>

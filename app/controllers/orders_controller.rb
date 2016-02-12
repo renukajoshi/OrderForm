@@ -5,28 +5,20 @@ class OrdersController < ApplicationController
   
   def index
     @orders = Order.all
-
-    @products = Product.all
-    
-    #@products = @order.products
-    #respond_with(@orders)
   end
 
   def show
+    
     #respond_with(@order)
   end
 
   def new
     @order = Order.new
-    #to create customer and address using nested form
+    @customers = Customer.all
+   #to create customer and address using nested form
     @order.build_customer
     @order.build_address
-    @order.lineitems.build
-    
-  
-  # if @order.customer.email 
-   #    render addresses_path(@address) , method: :GET
-   #  end
+    @order.lineitems.build 
   end
 
   def edit
@@ -34,8 +26,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-     #raise params.inspect
-     respond_to do |format|
+    respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }

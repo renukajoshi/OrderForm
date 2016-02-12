@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+
+<hr>
 <p>
   <strong>Order no:</strong>
   <%= @order.order_no %>
@@ -30,8 +32,10 @@
   <strong>Is customer pickup:</strong>
   <%= @order.is_customer_pickup %>
 </p>
-
-
-
+<br>
+<hr>
+<%= render 'lineitems' %>
+<br>
+<hr>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

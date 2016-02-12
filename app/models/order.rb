@@ -10,25 +10,14 @@ class Order < ActiveRecord::Base
 	accepts_nested_attributes_for :lineitems
 
 
-	 def order_value
-  		lineitems.collect { |oi| oi.valid? ? (oi.quantity * oi.price) : 0 }
-    end
+	 # def order_value
+  # 		lineitems.collect { |oi| oi.valid? ? (oi.quantity * oi.price) : 0 }
+  #   end
 
-   #  def check_email_exists
-   #  	if Customer.exists?(:email => self.email)
-   #    		render :show , addresses_path(@address)
-   #  	end
-  	# end 
-
-
-  	# def self.order_delivery_date
-  	# 	if Date.today 
-  	# 		@order_delivery.delivery_time  = Date.today + 7.days
-  	# 	else
-  	# 	end
-  	# end
-
-#   	def find_products
-#   		self.product.find(:all)
-#   	end
+    # def check_customer_email
+    # 	customer = Customer.find_by(email: params[:customer][:email])
+    # 	if customer.present?
+    		
+    # 	end
+   	# end
 end

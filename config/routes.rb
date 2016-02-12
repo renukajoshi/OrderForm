@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   resources :addresses
 
-  resources :customers
+  resources :customers do
+    resources :orders
+  end
 
   root to: "orders#index"
   
