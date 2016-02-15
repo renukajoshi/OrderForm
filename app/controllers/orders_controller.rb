@@ -14,11 +14,13 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @customers = Customer.all
-   #to create customer and address using nested form
+    #to create customer and address using nested form
     @order.build_customer
     @order.build_address
     @order.lineitems.build 
+
+    @customers = Customer.all
+    #@order = Order.check_customer_email(params[:id])
   end
 
   def edit
@@ -59,6 +61,12 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  # def get_json
+  #   cust = Customer.find(params[:customer_id])
+  #   render :text => cust.to_json
+  # end
+  
   private
     def set_order
       @order = Order.find(params[:id])

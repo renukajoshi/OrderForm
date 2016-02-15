@@ -28,17 +28,30 @@
 <h5>Customer Address Details</h5>
 <% if @customer.addresses.any? %>
 <%#= raise @customer.inspect %>
-  <ul>
+
     <% @customer.addresses.each do |adr| %>
     <%#= raise params.inspect%>
-      <li> <%= adr.permanant_addr %></li>  
-      <li> <%= adr.office_addr %></li>  
-      <li> <%= adr.temparary_addr %></li>  
-      <li> <%= adr.city %></li>  
-      <li> <%= adr.state %></li>  
-      <li> <%= adr.country %></li>  
+    <hr>
+    <p><strong>Permanant Address:</strong>
+       <%= adr.permanant_addr %>
+    </p> 
+    
+    <p><strong>Office Address:</strong>
+       <%= adr.office_addr %>
+    </p>
+    
+    <p><strong>Temparary Address:</strong>
+       <%= adr.temparary_addr %></p>
+    
+    <p><strong>City:</strong>  
+       <%= adr.city %> </p>
+    
+    <p><strong>State</strong>
+       <%= adr.state %></p>
+    
+    <p><strong>Country:</strong>  
+       <%= adr.country %></p>  
     <% end %>
-  </ul>
 <% else %>
   <p>none available</p>
 <% end %>

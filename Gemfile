@@ -43,4 +43,4 @@ gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'country_select'
 gem 'bootstrap-datepicker-rails'
-#gem 'devise'
+# gem 'bullet' , group: :development

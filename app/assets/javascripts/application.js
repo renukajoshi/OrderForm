@@ -49,4 +49,40 @@ emailid[2]="dhanashri.joshi@gmail.com";
               document.getElementById("emailid").value=emailid[y.selectedIndex];
          }
 
+// $(function(){
 
+//     $(".dropdown-menu").click(function(){
+
+//       $(".text").text($(fname).text());
+//       $(".text").text($(lname).text());
+
+//    });
+
+// });
+
+
+
+// function Choice() {
+
+// 	var selected_item = $("#customerDetails options:selected").text;
+// 	var selected_item_index = $("#customerDetails options:selected").index;
+// }
+
+
+// cust = new Array();
+// cust[1] =  
+// function Choice(){
+
+// 		foreach($cust as $value){
+// 			echo '<option>'.$fname.'</option'>
+// 		}
+
+// }
+
+
+// $("#customer_selector").change(function(){  //calls this function when the selected value changes
+//   $.get("/order/"+$(this).val()+"/get_json",function(data, status, xhr){  //does ajax call to the invoice route we set up above
+//     data = eval(data);  //turn the response text into a javascript object
+//     $("#field_1").val(data.fname);  //sets the value of the fields to the data returned
+//   });
+// });

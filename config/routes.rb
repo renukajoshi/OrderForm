@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
 
   root to: "orders#index"
+
+  get "order/:id/get_json", :controller => "order" , :action => "get_json"
   
 
   # The priority is based upon order of creation: first created -> highest priority.

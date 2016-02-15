@@ -70,14 +70,16 @@
   </div>
 
   <hr>
+
+    <%#= f.select 'customer_id', options_for_select(@customers.collect{ |u| [u.email, u.id] }) %>
+    <%#= render 'customer' %>
   <!--=========================-->
-  <!--form for customer details -->
-<%#= render 'customers/show' %>
-<%= f.collection_select :customer_id , @customers , :id , :email , prompt: 'Please select customer email' %>
-<%#= render 'customer' %>
+  <!-- Customer Form -->
+
   <%= f.fields_for :customer do |c| %>
     <p>customer details</p>
     <hr>
+
     <div class="row">
       <div class="field">
         <div class="col-md-4">
