@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
+
+  #autocomplete :customer , :email
   
   def index
     @orders = Order.all
@@ -17,8 +19,8 @@ class OrdersController < ApplicationController
     #to create customer and address using nested form
     @order.build_customer
     @order.build_address
-    @order.lineitems.build 
-
+    @order.line_items.build 
+    @products = Product.all
     @customers = Customer.all
     #@order = Order.check_customer_email(params[:id])
   end
@@ -73,7 +75,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country], lineitems_attributes:[:id, :name, :sku, :quantity, :price])
+      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country], line_items_attributes:[:id, :name, :sku, :quantity, :price])
     end
 
     

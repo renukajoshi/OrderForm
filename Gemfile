@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails4-autocomplete'
-gem 'jquery-ui-rails'
+# gem 'rails4-autocomplete'
+# gem 'jquery-ui-rails'
  
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
@@ -44,3 +44,4 @@ gem 'bootstrap-sass'
 gem 'country_select'
 gem 'bootstrap-datepicker-rails'
 # gem 'bullet' , group: :development
+#gem 'rails4-autocomplete'

@@ -72,6 +72,12 @@
   <hr>
 
     <%#= f.select 'customer_id', options_for_select(@customers.collect{ |u| [u.email, u.id] }) %>
+     <select id="customer_id">
+      <%= @customers.each do |customer| %>
+        <option value="<%= customer.id %>"><%= customer.email %></option>
+      <% end %>
+    </select>
+
     <%#= render 'customer' %>
   <!--=========================-->
   <!-- Customer Form -->
@@ -197,35 +203,35 @@
   <!-- Select Product --> 
   
   <h5>Add Products</h5>
-  <%= f.fields_for :lineitems do |p| %>
+  <%= f.fields_for :line_items do |p| %>
     <div class="lineitems_field">
       <div class="field">
-        <%#= collection_select(:products, :id , Product.all , :id, :name , {:required => true} , {:multiple => true}) %> 
+       <%= f.select 'product_id', options_for_select(@products.collect{ |u| [u.name, u.id] }), :multiple => true %>
       </div>
     </div>
 
-    <div class="lineitems_field">
+    <div class="line_items_field">
       <div class="field">
         <%= p.label "Product Name"%>
         <%= p.text_field :name %>
       </div>
     </div>
 
-    <div class="lineitems_field">
+    <div class="line_items_field">
       <div class="field">
         <%= p.label :sku %>
         <%= p.text_field :sku %>
       </div>
     </div>
 
-      <div class="lineitems_field">
+      <div class="line_items_field">
         <div class="field">
           <%= p. label "Quantity"%>
           <%= p.text_field :quantity %>
         </div>
       </div>
 
-      <div class="lineitems_field">
+      <div class="line_items_field">
         <div class="field">
           <%= p.label "price"%>
           <%= p.text_field :price %>

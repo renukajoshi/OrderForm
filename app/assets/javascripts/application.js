@@ -12,77 +12,65 @@
 //= 
 //= require jquery
 //= require jquery_ujs
+//= require autocomplete-rails
 //= require turbolinks
 //= require bootstrap-datepicker
 //= require_tree .
 
 
-var firstname = new Array();
-var lastname = new Array();
-var contactno = new Array();
-var emailid = new Array();
+// var firstname = new Array();
+// var lastname = new Array();
+// var contactno = new Array();
+// var emailid = new Array();
 
-firstname[0] = "";
-lastname[0] = "";
-contactno[0] = "";
-emailid[0]="";
+// firstname[0] = "";
+// lastname[0] = "";
+// contactno[0] = "";
+// emailid[0]="";
 
-firstname[1] = 1;
-lastname[1] = "Joshi";
-contactno[1] = "942038578";
-emailid[1]="renurenukaj1@gmail.com";
+// firstname[1] = 1;
+// lastname[1] = "Joshi";
+// contactno[1] = "942038578";
+// emailid[1]="renurenukaj1@gmail.com";
 
-firstname[2] = 2;
-lastname[2] = "Joshi";
-contactno[2] = "36527";
-emailid[2]="dhanashri.joshi@gmail.com";
-
-
-        function Choice() {
-            //x = document.getElementById("officeaddressrs");
-            y = document.getElementById("selectCustomers");
-
-              //x.value = y.options[y.selectedIndex].text;
-              document.getElementById("firstname").value =firstname[y.selectedIndex];
-              document.getElementById("lastname").value = lastname[y.selectedIndex];
-              document.getElementById("contactno").value = contactno[y.selectedIndex];
-              document.getElementById("emailid").value=emailid[y.selectedIndex];
-         }
-
-// $(function(){
-
-//     $(".dropdown-menu").click(function(){
-
-//       $(".text").text($(fname).text());
-//       $(".text").text($(lname).text());
-
-//    });
-
-// });
+// firstname[2] = 2;
+// lastname[2] = "Joshi";
+// contactno[2] = "36527";
+// emailid[2]="dhanashri.joshi@gmail.com";
 
 
+//         function Choice() {
+//             //x = document.getElementById("officeaddressrs");
+//             y = document.getElementById("selectCustomers");
 
-// function Choice() {
+//               //x.value = y.options[y.selectedIndex].text;
+//               document.getElementById("firstname").value =firstname[y.selectedIndex];
+//               document.getElementById("lastname").value = lastname[y.selectedIndex];
+//               document.getElementById("contactno").value = contactno[y.selectedIndex];
+//               document.getElementById("emailid").value=emailid[y.selectedIndex];
+//          }
 
-// 	var selected_item = $("#customerDetails options:selected").text;
-// 	var selected_item_index = $("#customerDetails options:selected").index;
-// }
+$(document).ready(function() {
+    $("#customer_id").change(function() {
+        $("#customer_id option:selected").map(function() {
+            //$("#order_customer_attributes_fname").val($($fname).text());
+            $("#order_customer_attributes_email").val($(this).text());
+			$.ajax({
+     type: "POST",// GET in place of POST
+     contentType: "application/json; charset=utf-8",
+     url: "/room/test",
+     data : JSON.stringify({name:"ravi",age:"31"}),
+     dataType: "json",
+     success: function (result) {
+        //do somthing here
+        window.alert("success!!");
+     },
+     error: function (){
+        window.alert("something wrong!");
+     }
+});
+		});
 
-
-// cust = new Array();
-// cust[1] =  
-// function Choice(){
-
-// 		foreach($cust as $value){
-// 			echo '<option>'.$fname.'</option'>
-// 		}
-
-// }
-
-
-// $("#customer_selector").change(function(){  //calls this function when the selected value changes
-//   $.get("/order/"+$(this).val()+"/get_json",function(data, status, xhr){  //does ajax call to the invoice route we set up above
-//     data = eval(data);  //turn the response text into a javascript object
-//     $("#field_1").val(data.fname);  //sets the value of the fields to the data returned
-//   });
-// });
+    });
+});
+ 

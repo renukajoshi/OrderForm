@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :orders
+  resources :line_items
 
-  resources :lineitems
+  resources :orders
+     
 
   resources :products
 
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
 
   root to: "orders#index"
 
-  get "order/:id/get_json", :controller => "order" , :action => "get_json"
+ 
   
 
   # The priority is based upon order of creation: first created -> highest priority.
