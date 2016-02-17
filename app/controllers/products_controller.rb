@@ -63,6 +63,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def product_details
+    @product = Product.find_by_name(params[:name])
+    render json: @product
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

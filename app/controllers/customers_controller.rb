@@ -10,6 +10,7 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+
   end
 
   # GET /customers/new
@@ -63,6 +64,25 @@ class CustomersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def get_details
+    p params
+    @cust = Customer.find_by_email(params[:email])
+    #render json: @cust
+
+    @adr = Address.all
+    respond_to do |format|
+      format.json  { render :json => {:cust => @cust,  :adr => @adr }}
+    end
+end
+  
+  # def autofill
+  #   @custom = Customer.where("email=?",params[:email]).take
+  #   respond_to do |format|
+  #     format.json {render json: @custom }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

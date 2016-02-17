@@ -3,18 +3,20 @@ Rails.application.routes.draw do
 
   resources :orders
      
-
+get 'products/product_details' , :to => "products#product_details" , :as => 'product_details'
   resources :products
 
   resources :addresses
-
+get 'customers/get_details', :to => "customers#get_details", :as => 'get_details'
   resources :customers do
-    resources :orders
+   resources :orders
   end
 
   root to: "orders#index"
+  #root to: "orders#get_json"
 
- 
+  # get "customers//:id", :controller => "customers" , :action => "get_json"
+ #get "customers/autofill/:email" => "customers#autofill", as: :customers_autofill
   
 
   # The priority is based upon order of creation: first created -> highest priority.

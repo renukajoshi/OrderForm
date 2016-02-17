@@ -22,7 +22,8 @@ class OrdersController < ApplicationController
     @order.line_items.build 
     @products = Product.all
     @customers = Customer.all
-    #@order = Order.check_customer_email(params[:id])
+    @cust = @customers.map{|customer| customer.fname }
+    #raise @cust.params
   end
 
   def edit
@@ -63,11 +64,7 @@ class OrdersController < ApplicationController
     end
   end
 
-
-  # def get_json
-  #   cust = Customer.find(params[:customer_id])
-  #   render :text => cust.to_json
-  # end
+  
   
   private
     def set_order
@@ -77,6 +74,5 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country], line_items_attributes:[:id, :name, :sku, :quantity, :price])
     end
-
     
 end

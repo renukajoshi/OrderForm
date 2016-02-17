@@ -72,11 +72,11 @@
   <hr>
 
     <%#= f.select 'customer_id', options_for_select(@customers.collect{ |u| [u.email, u.id] }) %>
-     <select id="customer_id">
-      <%= @customers.each do |customer| %>
-        <option value="<%= customer.id %>"><%= customer.email %></option>
-      <% end %>
-    </select>
+     <div id="customer_detail">
+      <%= f.collection_select :customer_id,@customers,:id,:email,include_blank: true%>
+    </div>
+   <!-- <div id="get_customer"></div>
+    <div id="get_address"></div> -->
 
     <%#= render 'customer' %>
   <!--=========================-->
@@ -205,7 +205,7 @@
   <h5>Add Products</h5>
   <%= f.fields_for :line_items do |p| %>
     <div class="lineitems_field">
-      <div class="field">
+      <div class="field" id="products">
        <%= f.select 'product_id', options_for_select(@products.collect{ |u| [u.name, u.id] }), :multiple => true %>
       </div>
     </div>
