@@ -204,9 +204,9 @@
   
   <h5>Add Products</h5>
   <%= f.fields_for :line_items do |p| %>
-    <div class="lineitems_field">
+    <div class="line_items_field">
       <div class="field" id="products">
-       <%= f.select 'product_id', options_for_select(@products.collect{ |u| [u.name, u.id] }), :multiple => true %>
+      <%= f.collection_select :product_id, @products , :id, :name , {:required => true} , :multiple => true  %>
       </div>
     </div>
 

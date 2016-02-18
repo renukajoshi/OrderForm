@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sku: 1
+  quantity: 1
+  price: 1
+  order_id: 
+  product_id: 
+
+two:
+  name: MyString
+  sku: 1
+  quantity: 1
+  price: 1
+  order_id: 
+  product_id: 

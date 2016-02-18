@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @order.customer.fname %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @order.customer.try(:lname) %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @order.customer.try(:email) %>
+</p>
+
+<p>
+  <strong>Contact no:</strong>
+  <%= @order.customer.try(:contact_no) %>
+</p>
+
+<p>
+  <strong>Birthdate:</strong>
+  <%= @order.customer.try(:birthdate) %>
+</p>
+
+<h3>Customer Address Details</h3>
+<% if @order.customer.addresses.any? %>
+<%#= raise params.inspect %>
+  <ul>
+    <% @order.addresses.each do |adr| %>
+    <%#= raise params.inspect%>
+      <li> <%= adr.permanant_addr %></li>  
+      <li> <%= adr.office_addr %></li>  
+      <li> <%= adr.temparary_addr %></li>  
+      <li> <%= adr.city %></li>  
+      <li> <%= adr.state %></li>  
+      <li> <%= adr.country %></li>  
+    <% end %>
+  </ul>
+<% else %>
+  <p>none available</p>
+<% end %>
+<%#= link_to 'Edit', edit_customer_path(@customer) %> 
+<%#= link_to 'Back', customers_path %>

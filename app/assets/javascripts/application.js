@@ -12,65 +12,64 @@
 //= 
 //= require jquery
 //= require jquery_ujs
-//= require autocomplete-rails
 //= require turbolinks
 //= require bootstrap-datepicker
 //= require_tree .
 
 
-// var firstname = new Array();
-// var lastname = new Array();
-// var contactno = new Array();
-// var emailid = new Array();
-
-// firstname[0] = "";
-// lastname[0] = "";
-// contactno[0] = "";
-// emailid[0]="";
-
-// firstname[1] = 1;
-// lastname[1] = "Joshi";
-// contactno[1] = "942038578";
-// emailid[1]="renurenukaj1@gmail.com";
-
-// firstname[2] = 2;
-// lastname[2] = "Joshi";
-// contactno[2] = "36527";
-// emailid[2]="dhanashri.joshi@gmail.com";
-
-
-//         function Choice() {
-//             //x = document.getElementById("officeaddressrs");
-//             y = document.getElementById("selectCustomers");
-
-//               //x.value = y.options[y.selectedIndex].text;
-//               document.getElementById("firstname").value =firstname[y.selectedIndex];
-//               document.getElementById("lastname").value = lastname[y.selectedIndex];
-//               document.getElementById("contactno").value = contactno[y.selectedIndex];
-//               document.getElementById("emailid").value=emailid[y.selectedIndex];
-//          }
-
 $(document).ready(function() {
-    $("#customer_id").change(function() {
-        $("#customer_id option:selected").map(function() {
+    $("#customer_detail").change(function() {
+		console.log('hello');
+        $("#customer_detail option:selected").map(function() {
             //$("#order_customer_attributes_fname").val($($fname).text());
             $("#order_customer_attributes_email").val($(this).text());
-			$.ajax({
-     type: "POST",// GET in place of POST
-     contentType: "application/json; charset=utf-8",
-     url: "/room/test",
-     data : JSON.stringify({name:"ravi",age:"31"}),
-     dataType: "json",
-     success: function (result) {
-        //do somthing here
-        window.alert("success!!");
-     },
-     error: function (){
-        window.alert("something wrong!");
-     }
-});
-		});
-
+            $.ajax({
+            	type: "GET",
+            	url: "/customers/get_details?email=" + $(this).text(),
+            	datatype: "json",
+            	success: function(result){
+            		console.log(result['cust']);
+            		console.log(result['adr']);
+            		//console.log(adr);
+            		//window.alert(result.fname)
+            		$("#order_customer_attributes_fname").val(result['cust'].fname);
+            		$("#order_customer_attributes_lname").val(result['cust'].lname);
+            		$("#order_customer_attributes_contact_no").val(result['cust'].contact_no);
+                    for(i=0;i<result['adr'].length;i++)
+                    {   
+                            console.log(result['adr'][i].permanant_addr);
+                            $("#order_address_attributes_permanant_addr").val(result['adr'][i].permanant_addr);
+                            $("#order_address_attributes_office_addr").val(result['adr'][i].office_addr);
+                            $("#order_address_attributes_temparary_addr").val(result['adr'][i].temparary_addr);
+                            $("#order_address_attributes_city").val(result['adr'][i].city);
+                            $("#order_address_attributes_state").val(result['adr'][i].state);
+                            $("#order_address_attributes_country").val(result['adr'][i].country);
+                            $("#order_address_attributes_pin_code").val(result['adr'][i].pin_code);
+                    }
+                }
+            });
+        });
     });
 });
- 
+
+
+$(document).ready(function() {
+    $("#products").change(function() {
+		console.log('hello');
+        $("#products option:selected").map(function() {
+            //$("#order_customer_attributes_fname").val($($fname).text());
+            $("#order_line_items_attributes_0_name").val($(this).text());
+            $.ajax({
+            	type: "GET",
+            	url: "/products/product_details?name=" + $(this).text(),
+            	datatype: "json",
+            	success: function(data){
+            		console.log(data);
+            		$("#order_line_items_attributes_0_sku").val(data.sku);
+            		$("#order_line_items_attributes_0_quantity").val(data.quantity);
+            		$("#order_line_items_attributes_0_price").val(data.price);
+            	}
+            });
+        });
+    });
+});
