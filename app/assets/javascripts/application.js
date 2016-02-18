@@ -28,24 +28,28 @@ $(document).ready(function() {
             	url: "/customers/get_details?email=" + $(this).text(),
             	datatype: "json",
             	success: function(result){
-            		console.log(result['cust']);
-            		console.log(result['adr']);
+            		//console.log(result['cust']);
+            		//console.log(result['adr']);
             		//console.log(adr);
             		//window.alert(result.fname)
             		$("#order_customer_attributes_fname").val(result['cust'].fname);
             		$("#order_customer_attributes_lname").val(result['cust'].lname);
             		$("#order_customer_attributes_contact_no").val(result['cust'].contact_no);
-                    for(i=0;i<result['adr'].length;i++)
+                    for(var i=0;i<result['adr'].length;i++)
                     {   
-                            console.log(result['adr'][i].permanant_addr);
-                            $("#order_address_attributes_permanant_addr").val(result['adr'][i].permanant_addr);
-                            $("#order_address_attributes_office_addr").val(result['adr'][i].office_addr);
-                            $("#order_address_attributes_temparary_addr").val(result['adr'][i].temparary_addr);
-                            $("#order_address_attributes_city").val(result['adr'][i].city);
-                            $("#order_address_attributes_state").val(result['adr'][i].state);
-                            $("#order_address_attributes_country").val(result['adr'][i].country);
-                            $("#order_address_attributes_pin_code").val(result['adr'][i].pin_code);
+                        for(var j = 0; j < i ;j++)
+                        {    
+                            console.log(result['adr'][j].permanant_addr);
+                            $("#order_address_attributes_permanant_addr").val(result['adr'][j].permanant_addr);
+                            $("#order_address_attributes_office_addr").val(result['adr'][j].office_addr);
+                            $("#order_address_attributes_temparary_addr").val(result['adr'][j].temparary_addr);
+                            $("#order_address_attributes_city").val(result['adr'][j].city);
+                            $("#order_address_attributes_state").val(result['adr'][j].state);
+                            $("#order_address_attributes_country").val(result['adr'][j].country);
+                            $("#order_address_attributes_pin_code").val(result['adr'][j].pin_code);
+                        }
                     }
+                        
                 }
             });
         });

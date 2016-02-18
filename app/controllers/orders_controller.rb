@@ -22,7 +22,6 @@ class OrdersController < ApplicationController
     @order.line_items.build 
     @products = Product.all
     @customers = Customer.all
-    @cust = @customers.map{|customer| customer.fname }
     #raise @cust.params
   end
 
@@ -30,7 +29,9 @@ class OrdersController < ApplicationController
   end
 
   def create
+   #raise params.inspect
     @order = Order.new(order_params)
+    #raise params.inspect
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -72,7 +73,8 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate], address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country , :pin_code], line_items_attributes:[:id, :name, :sku, :quantity, :price])
+      #raise params.inspect
+      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate] , address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country , :pin_code , :customer_id], line_items_attributes:[:id, :name, :sku, :quantity, :price])
     end
     
 end

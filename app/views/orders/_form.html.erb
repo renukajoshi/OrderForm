@@ -202,11 +202,12 @@
   <hr>
   <!-- Select Product --> 
   
-  <h5>Add Products</h5>
+ 
   <%= f.fields_for :line_items do |p| %>
-    <div class="line_items_field">
+    <div class="lineitems_field">
       <div class="field" id="products">
-      <%= f.collection_select :product_id, @products , :id, :name , {:required => true} , :multiple => true  %>
+        <%= p.label"Select Product:" %><br>
+      <%= p.collection_select :product_id, @products , :id, :name , {:required => true} , {:multiple => true}  %>
       </div>
     </div>
 
