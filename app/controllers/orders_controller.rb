@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    
     #respond_with(@order)
   end
 
@@ -20,10 +19,16 @@ class OrdersController < ApplicationController
     @order.build_customer
     @order.build_address
     @order.line_items.build 
+ <<<<<<< HEAD
     @customers = Customer.all
     @products = Product.all
     #@product_line_item = @order.product_line_items.build
 
+ =======
+    #@products = Product.order(:id)
+    #@customers = Customer.order(:id)
+    
+ >>>>>>> 7d65d785a6f5ce1ed505785b887c7614dacf2248
   end
 
   def edit
@@ -31,7 +36,9 @@ class OrdersController < ApplicationController
 
   def create
    #raise params.inspect
-    @order = Order.new(order_params)
+    @order = Order.new( order_params )
+    @customers =Customer.all
+    @products = Product.all
     #raise params.inspect
     respond_to do |format|
       if @order.save
