@@ -16,13 +16,14 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     #to create customer and address using nested form
-    @order.build_customer
+     @order.build_customer
     @order.build_address
     @order.line_items.build 
+    
 # <<<<<<< HEAD
     @customers = Customer.all
     @products = Product.all
-    #@product_line_item = @order.product_line_items.build
+  
 
 # =======
     #@products = Product.order(:id)
@@ -37,11 +38,14 @@ class OrdersController < ApplicationController
   def create
    #raise params.inspect
     @order = Order.new( order_params )
+
     @customers =Customer.all
     @products = Product.all
+
     #raise params.inspect
     respond_to do |format|
       if @order.save
+        Address.where( id: @order.address_id ).update_all( customer_id: @order.customer_id )
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -49,6 +53,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   def update

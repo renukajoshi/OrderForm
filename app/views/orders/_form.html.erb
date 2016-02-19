@@ -75,7 +75,7 @@
     <div class="field" id="customer_detail">
       <div class="col-md-4">
         <%#= raise params.inspect %>
-        <%= f.collection_select :customer_id , @customers, :id , :email , include_blank: true %>
+        <%= f.collection_select :customer_id , @customers, :id , :email , include_blank: true, :multiple => true  %>
       </div>
     </div>
   </div>
@@ -207,7 +207,7 @@
     <div class="lineitems_field">
       <div class="field" id="products">
         <%= p.label"Select Product:" %><br>
-      <%= p.collection_select :product_id, @products , :id, :name , {:required => true} , {:multiple => true}  %>
+        <%= p.collection_select :product_id, @products , :id, :name , {:required => true} , {:multiple => true}  %>
       </div>
     </div>
 

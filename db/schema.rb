@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219055430) do
+ActiveRecord::Schema.define(version: 20160219124321) do
 
   create_table "addresses", force: true do |t|
     t.text     "permanant_addr"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20160219055430) do
     t.string   "email"
     t.integer  "contact_no"
     t.date     "birthdate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "line_item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,16 +80,6 @@ ActiveRecord::Schema.define(version: 20160219055430) do
   add_index "orders", ["address_id"], name: "index_orders_on_address_id", using: :btree
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
   add_index "orders", ["product_id"], name: "index_orders_on_product_id", using: :btree
-
-  create_table "product_line_items", force: true do |t|
-    t.integer  "product_id"
-    t.integer  "line_items_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "order_id"
-  end
-
-  add_index "product_line_items", ["order_id"], name: "index_product_line_items_on_order_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "name"
