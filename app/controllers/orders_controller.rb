@@ -20,8 +20,8 @@ class OrdersController < ApplicationController
     @order.build_customer
     @order.build_address
     @order.line_items.build 
-    @products = Product.all
-    @customers = Customer.all
+    @products = Product.order(:id)
+    @customers = Customer.order(:id)
     #raise @cust.params
   end
 
@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
 
   def create
    #raise params.inspect
-    @order = Order.new(order_params)
+    @order = Order.new( order_params )
     #raise params.inspect
     respond_to do |format|
       if @order.save
