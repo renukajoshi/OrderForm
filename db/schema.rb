@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216061642) do
+ActiveRecord::Schema.define(version: 20160219055430) do
 
   create_table "addresses", force: true do |t|
     t.text     "permanant_addr"
@@ -56,21 +56,6 @@ ActiveRecord::Schema.define(version: 20160216061642) do
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
-  create_table "lineitems", force: true do |t|
-    t.string   "name"
-    t.integer  "sku"
-    t.text     "description"
-    t.integer  "quantity"
-    t.decimal  "price",       precision: 10, scale: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "product_id"
-    t.integer  "order_id"
-  end
-
-  add_index "lineitems", ["order_id"], name: "index_lineitems_on_order_id", using: :btree
-  add_index "lineitems", ["product_id"], name: "index_lineitems_on_product_id", using: :btree
-
   create_table "orders", force: true do |t|
     t.integer  "order_no"
     t.integer  "tracking_no"
@@ -88,6 +73,16 @@ ActiveRecord::Schema.define(version: 20160216061642) do
   add_index "orders", ["address_id"], name: "index_orders_on_address_id", using: :btree
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
   add_index "orders", ["product_id"], name: "index_orders_on_product_id", using: :btree
+
+  create_table "product_line_items", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "line_items_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "order_id"
+  end
+
+  add_index "product_line_items", ["order_id"], name: "index_product_line_items_on_order_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "name"

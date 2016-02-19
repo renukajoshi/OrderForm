@@ -20,9 +20,10 @@ class OrdersController < ApplicationController
     @order.build_customer
     @order.build_address
     @order.line_items.build 
-    @products = Product.all
     @customers = Customer.all
-    #raise @cust.params
+    @products = Product.all
+    #@product_line_item = @order.product_line_items.build
+
   end
 
   def edit
@@ -74,7 +75,6 @@ class OrdersController < ApplicationController
 
     def order_params
       #raise params.inspect
-      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate] , address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country , :pin_code , :customer_id], line_items_attributes:[:id, :name, :sku, :quantity, :price])
+        params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate] , address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country , :pin_code , :customer_id], line_items_attributes:[:id , :name, :sku, :quantity , :price])
     end
-    
 end
