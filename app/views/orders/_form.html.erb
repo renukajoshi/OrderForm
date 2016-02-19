@@ -71,20 +71,21 @@
 
   <hr>
 
-    <%#= f.select 'customer_id', options_for_select(@customers.collect{ |u| [u.email, u.id] }) %>
-     <div id="customer_detail">
-      <%= f.collection_select :customer_id , @customers, :id , :email , include_blank: true %>
+   <div class="row">
+    <div class="field" id="customer_detail">
+      <div class="col-md-4">
+        <%#= raise params.inspect %>
+        <%= f.collection_select :customer_id , @customers, :id , :email , include_blank: true %>
+      </div>
     </div>
-   <!-- <div id="get_customer"></div>
-    <div id="get_address"></div> -->
-
-    <%#= render 'customer' %>
+  </div>
   <!--=========================-->
   <!-- Customer Form -->
 
   <%= f.fields_for :customer do |c| %>
     <p>customer details</p>
     <hr>
+    
 
     <div class="row">
       <div class="field">

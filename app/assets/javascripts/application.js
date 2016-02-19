@@ -48,8 +48,7 @@ $(document).ready(function() {
                             $("#order_address_attributes_country").val(result['adr'][j].country);
                             $("#order_address_attributes_pin_code").val(result['adr'][j].pin_code);
                         }
-                    }
-                        
+                    }       
                 }
             });
         });
