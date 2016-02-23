@@ -202,15 +202,16 @@
 
   <hr>
   <!-- Select Product --> 
-  
-      <%= f.fields_for :line_items do |p| %>
-    <div class="lineitems_field">
-      <div class="field" id="products">
-        <%= p.label"Select Product:" %><br>
-        <%= p.collection_select :product_id, @products , :id, :name , {:required => true} , {:multiple => true}  %>
-      </div>
-    </div>
 
+  <div class="lineitems_field">
+    <div class="field" id="products">
+      <%= f.label"Select Product:" %><br>
+      <%= f.collection_select :product_id, @products , :id, :name , {:required => true} , {:multiple => true }  %>
+    </div>
+  </div>
+ 
+  <%= f.fields_for :line_items do |p| %>
+  <hr>
     <div class="line_items_field">
       <div class="field">
         <%= p.label "Product Name"%>
@@ -240,8 +241,6 @@
       </div>
   <% end %>
     <br>
-
-
     <hr>
 
   <div class="actions" align="center">

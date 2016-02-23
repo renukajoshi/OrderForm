@@ -2,10 +2,9 @@ class Order < ActiveRecord::Base
 	belongs_to :address
 
 
-	has_many :line_items
-	has_many :products
-	# has_many :product_line_items
-
+	# has_many :line_items
+	# has_many :products
+	
 	
 	has_many :line_items
 	

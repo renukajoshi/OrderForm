@@ -27,12 +27,6 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.new(line_item_params)
 
     respond_to do |format|
-      if @line_item.save
-        some_hash = params.require(:product_ids)
-         s= some_hash.size
-          for i in 0...s
-          @item = Items.new(:line_item_id  =>@line_item.id ,:product_id => some_hash[i])
-          @item.save
         format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
         format.json { render :show, status: :created, location: @line_item }
       else

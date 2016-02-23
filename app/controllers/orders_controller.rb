@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     #to create customer and address using nested form
      @order.build_customer
     @order.build_address
-    @order.line_items.build 
+    @order.line_items.build
     
 # <<<<<<< HEAD
     @customers = Customer.all
@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
     #raise params.inspect
     respond_to do |format|
       if @order.save
-        Address.where( id: @order.address_id ).update_all( customer_id: @order.customer_id )
+        Address.where( id: @order.address_id ).update_all( customer_id: @order.customer_id ) 
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -86,7 +86,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      #raise params.inspect
-        params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate] , address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country , :pin_code , :customer_id], line_items_attributes:[:id , :name, :sku, :quantity , :price])
+      params.require(:order).permit(:order_no, :tracking_no, :delivery_date, :order_value, :is_express_delivery, :is_customer_pickup, customer_attributes:[:id , :fname, :lname, :email, :contact_no, :birthdate] , address_attributes:[:id, :permanant_addr, :office_addr, :temparary_addr, :city, :state, :country , :pin_code , :customer_id], line_items_attributes:[:id , :name, :sku, :quantity , :price])
     end
 end
